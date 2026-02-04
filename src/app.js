@@ -1,57 +1,34 @@
-// This file responsible for creating the server
-
 const express = require('express');
+const noteModel = require('./models/note.model')
 
-const app = express()     // calling the express server
+const app = express();
 app.use(express.json())
 
-const notes = []
 
-app.post('/notes',(req,res) => {
+/*
+POST/notes => create a notes
+GET/notes => get all notes
+DELETE/notes/:id => delete a notes
+PATCH/notes/:id => updated a notes
 
-    notes.push(req.body)
+*/
 
+app.post('/notes', async(req,res) => {
+
+    const data = req.body
+    await noteModel.create({
+
+        title: data.title,
+        description: data.description
+    })
     res.status(201).json({
-
-        mesaage:"note create successfully"
+        message: "Notes create successfully"
     })
+    
+
 })
 
-app.get('/notes',(req, res) =>{
-    res.status(200).json({
-        mesaage: "notes fetch successfully",
-        notes:notes
-    })
-})
-
-app.delete('/notes/:index',(req,res) => {
-
-    const index = req.params.index
-    delete notes[index]
-
-    res.status(200).json({
-
-        mesaage:"notes deleted successfully"
-    })
-})
-
-app.patch('/notes/:index', (req,res) =>{
-
-    const index = req.params.index
-    const description = req.body.description
-
-    notes[index].description = description
-
-    res.status(200).json({
-        message:"otes description updated"
-    })
-})
 
 
 
 module.exports = app
-
-// jYiaCMccDm6Gzz03
-
-
-// mongodb+srv://yt:jYiaCMccDm6Gzz03@complete-backend.tkdqpmm.mongodb.net/

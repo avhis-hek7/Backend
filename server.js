@@ -1,7 +1,12 @@
-// this file is responsible for the starting the server
+const app = require('./src/app')
+const connectDB = require('./src/db/db');
 
-const app = require('./src/app')  // exporting from app from app.js
 
-app.listen('3000', () =>{
-    console.log("Server is running port 3000")
+connectDB()
+
+
+
+
+app.listen(3000, () => {
+    console.log("server running at port number 3000")
 })
