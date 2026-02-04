@@ -24,10 +24,38 @@ app.post('/notes', async(req,res) => {
     res.status(201).json({
         message: "Notes create successfully"
     })
-    
+
 
 })
 
+
+app.get('/notes', async(req, res) => {
+
+    const notes = await noteModel.find()
+
+    res.status(200).json({
+        message:"Fetching all notes from the backend",
+        notes: notes
+    })
+
+
+})
+
+
+
+// app.get('/notes', async(req, res) => {
+
+//     const notes = await noteModel.findOne({  find onlyone from the database which title is "test_title"
+//         title:"test_title"
+//     })
+
+//     res.status(200).json({
+//         message:"Fetching all notes from the backend",
+//         notes: notes
+//     })
+
+
+// })
 
 
 
