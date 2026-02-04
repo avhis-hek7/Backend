@@ -50,3 +50,8 @@ app.patch('/notes/:index', (req,res) =>{
 
 
 module.exports = app
+
+// jYiaCMccDm6Gzz03
+
+
+// mongodb+srv://yt:jYiaCMccDm6Gzz03@complete-backend.tkdqpmm.mongodb.net/
