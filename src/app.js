@@ -17,6 +17,13 @@ app.post('/notes',(req,res) => {
     })
 })
 
+app.get('/notes',(req, res) =>{
+    res.status(200).json({
+        mesaage: "notes fetch successfully",
+        notes:notes
+    })
+})
+
 
 
 module.exports = app
