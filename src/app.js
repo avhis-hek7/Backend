@@ -14,10 +14,28 @@ app.post('/create-post', upload.single("image"), async(req,res) => {
     console.log(req.file)
 
     const result = await uploadFile(req.file.buffer)
-    console.log(result)
+    
+    const post = await postModel.create({
+        image:result.url,
+        caption:req.body.caption
+    })
 
+    return res.status(201).json({
+        message:"Post created successfully",
+        post
+    })
 })
 
+
+app.get('/posts', async (req,res)=>{
+
+    const post = await postModel.find()
+
+    return res.status(200).json({
+        message:"Posts fetch Successfully",
+        post
+    })
+})
 
 
 
